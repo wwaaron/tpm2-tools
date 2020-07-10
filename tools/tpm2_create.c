@@ -372,7 +372,10 @@ tool_rc tpm2_tool_onrun(ESYS_CONTEXT *ectx, tpm2_option_flags flags) {
     }
 
     int fd = open("./template", O_WRONLY | O_CREAT | O_TRUNC);
-    write(fd, (void*)&ctx.object.public, sizeof(ctx.object.public));
+    int written = write(fd, (void*)&ctx.object.public, sizeof(ctx.object.public));
+    if (written != sizeof(ctx.object.public)) {
+        LOG_ERR("DIDN'T WRITE ENOUGH FUCK YOU");
+    }
     close(fd);
 
     if (ctx.flags.i
