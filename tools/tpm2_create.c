@@ -372,7 +372,7 @@ tool_rc tpm2_tool_onrun(ESYS_CONTEXT *ectx, tpm2_option_flags flags) {
     }
 
     int fd = open("./template", O_WRONLY | O_CREAT | O_TRUNC);
-    write((void*)ctx.object.public, sizeof(ctx.object.public));
+    write((void*)&ctx.object.public, sizeof(ctx.object.public));
     close(fd);
 
     if (ctx.flags.i
