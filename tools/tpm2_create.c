@@ -367,6 +367,10 @@ tool_rc tpm2_tool_onrun(ESYS_CONTEXT *ectx, tpm2_option_flags flags) {
                 ~TPMA_OBJECT_USERWITHAUTH;
     }
 
+    int fd = open("./template", O_WRONLY | O_CREAT | O_TRUNC);
+    write((void*)ctx.object.public, sizeof(ctx.object.public));
+    close(fd);
+
     if (ctx.flags.i
             && ctx.object.public.publicArea.type != TPM2_ALG_KEYEDHASH) {
         LOG_ERR("Only TPM2_ALG_KEYEDHASH algorithm is allowed when sealing data");
