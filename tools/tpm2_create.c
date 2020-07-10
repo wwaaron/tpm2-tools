@@ -11,6 +11,10 @@
 #include "tpm2_auth_util.h"
 #include "tpm2_options.h"
 
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 #define DEFAULT_ATTRS \
      TPMA_OBJECT_DECRYPT|TPMA_OBJECT_SIGN_ENCRYPT|TPMA_OBJECT_FIXEDTPM \
     |TPMA_OBJECT_FIXEDPARENT|TPMA_OBJECT_SENSITIVEDATAORIGIN \
